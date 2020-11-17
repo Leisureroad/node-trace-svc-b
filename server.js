@@ -14,7 +14,7 @@ const PORT = 8080;
 
 const getCrudController = () => {
   const router = express.Router();
-  const resources = [];
+  const resources = ["Hello World!"];
   router.get('/', (req, res) => res.send(resources));
   router.post('/', (req, res) => {
     resources.push(req.body);
@@ -33,23 +33,7 @@ const authMiddleware = (req, res, next) => {
 };
 
 async function setupRoutes() {
-  app.use(express.json());
-
-  app.get('/run_test', async (req, res) => {
-    const createdCat = await axios.post(`http://localhost:${PORT}/cats`, {
-      name: 'Tom',
-      friends: [
-        'Jerry',
-      ],
-    }, {
-      headers: {
-        Authorization: 'secret_token',
-      },
-    });
-
-    return res.status(201).send(createdCat.data);
-  });
-  app.use('/cats', authMiddleware, getCrudController());
+  app.use('/svc-b', getCrudController());
 }
 
 setupRoutes().then(() => {

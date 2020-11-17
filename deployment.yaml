@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: node-trace-svc-b
+  name: node-trace-svc-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-trace-svc-b
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: node-trace-svc-b
+    spec:
+      containers:
+      - image: gcr.io/flius-project/node-trace-svc-b:12-alpine
+        name: node-trace-svc-b
+        resources: {}
+status: {}
